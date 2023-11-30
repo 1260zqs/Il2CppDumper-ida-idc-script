@@ -28,7 +28,7 @@ namespace Il2CppDumper
         private static readonly HashSet<ulong> methodInfoCache = new();
         private static readonly HashSet<string> keyword = new(StringComparer.Ordinal)
         { "klass", "monitor", "register", "_cs", "auto", "friend", "template", "flat", "default", "_ds", "interrupt",
-            "unsigned", "signed", "asm", "if", "case", "break", "continue", "do", "new", "_", "short", "union", "class", "namespace"};
+            "unsigned", "signed", "asm", "if", "case", "break", "continue", "do", "new", "_", "short", "union", "class", "namespace", "return"};
         private static readonly HashSet<string> specialKeywords = new(StringComparer.Ordinal)
         { "inline", "near", "far" };
 
@@ -373,9 +373,10 @@ namespace Il2CppDumper
                 address = $"0x{x.Address:X}"
             }).ToArray();
             var jsonOptions = new JsonSerializerOptions() { WriteIndented = true, IncludeFields = true };
-            File.WriteAllText(outputDir + "stringliteral.json", JsonSerializer.Serialize(stringLiterals, jsonOptions), new UTF8Encoding(false));
+            File.WriteAllText(Path.Combine(outputDir, "stringliteral.json"), JsonSerializer.Serialize(stringLiterals, jsonOptions), new UTF8Encoding(false));
             //写入文件
-            File.WriteAllText(outputDir + "script.json", JsonSerializer.Serialize(json, jsonOptions));
+            File.WriteAllText(Path.Combine(outputDir, "script.json"), JsonSerializer.Serialize(json, jsonOptions));
+            ScriptBin.WriteFile(Path.Combine(outputDir, "script.bin"), json);
             //il2cpp.h
             for (int i = 0; i < genericClassList.Count; i++)
             {
@@ -427,7 +428,8 @@ namespace Il2CppDumper
             sb.Append(headerStruct);
             sb.Append(arrayClassHeader);
             sb.Append(methodInfoHeader);
-            File.WriteAllText(outputDir + "il2cpp.h", sb.ToString());
+            File.WriteAllText(Path.Combine(outputDir, "il2cpp.h"), sb.ToString());
+            return;
         }
 
         private void AddMetadataUsageTypeInfo(ScriptJson json, uint index, ulong address)
