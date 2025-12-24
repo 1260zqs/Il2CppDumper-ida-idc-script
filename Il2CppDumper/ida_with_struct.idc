@@ -153,7 +153,7 @@ static main()
     auto item, addr, name;
     
     //Addresses
-    msg("data.Addresses ...\n");
+    msg("data.Addresses (1 / 5)...\n");
     array = data.Addresses;
     len = array.len - 1;
     for(i = 0; i < len; i = i + 1)
@@ -164,7 +164,7 @@ static main()
     }
     
     //ScriptMethod
-    msg("data.ScriptMethod ...\n");
+    msg("data.ScriptMethod (2 / 5)...\n");
     array = data.ScriptMethod;
     len = array.len;
     for(i = 0; i < len; i = i + 1)
@@ -184,7 +184,7 @@ static main()
     }
     
     //Make String
-    msg("data.ScriptString ...\n");
+    msg("data.ScriptString (3 / 5)...\n");
     array = data.ScriptString;
     len = array.len;
     for(i = 0; i < len; i = i + 1)
@@ -198,7 +198,7 @@ static main()
     }
     
     //ScriptMetadata
-    msg("data.ScriptMetadata ...\n");
+    msg("data.ScriptMetadata (4 / 5)...\n");
     array = data.ScriptMetadata;
     len = array.len;
     for(i = 0; i < len; i = i + 1)
@@ -223,7 +223,7 @@ static main()
     }
     
     //ScriptMetadataMethod
-    msg("data.ScriptMetadataMethod ...\n");
+    msg("data.ScriptMetadataMethod (5 / 5)...\n");
     array = data.ScriptMetadataMethod;
     len = array.len;
     for(i = 0; i < len; i = i + 1)

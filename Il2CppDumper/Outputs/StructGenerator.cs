@@ -40,7 +40,7 @@ namespace Il2CppDumper
         };
 
         private static readonly HashSet<string> specialKeywords = new(StringComparer.Ordinal)
-        { "inline", "near", "far" };
+        { "inline", "near", "far", "_cs", "_ds", "_ts" };
 
         public StructGenerator(Il2CppExecutor il2CppExecutor)
         {
